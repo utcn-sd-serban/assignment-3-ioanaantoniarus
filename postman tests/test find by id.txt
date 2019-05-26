@@ -1,0 +1,33 @@
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+pm.test("Response time is less than 200ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(200);
+});
+let jsonData = pm.response.json();
+
+pm.test("Test id", function () {
+    pm.expect(jsonData.id).to.eql(10);
+});
+
+pm.test("Test title", function () {
+    pm.expect(jsonData.title).to.eql("A question");
+});
+
+pm.test("Test username", function () {
+    pm.expect(jsonData.username).to.eql("ioana33");
+});
+
+pm.test("Test text", function () {
+    pm.expect(jsonData.text).to.eql("what's this?");
+});
+
+pm.test("Test tags", function () {
+    pm.expect(jsonData.tags).to.eql(" question");
+});

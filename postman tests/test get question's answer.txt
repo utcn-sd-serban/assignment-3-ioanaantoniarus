@@ -1,0 +1,19 @@
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response time is less than 200ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(200);
+});
+
+let jsonData = pm.response.json();
+
+console.log(jsonData);
+
+pm.test("The resulting username is ioana33", function () {
+    pm.expect(jsonData[0].username).to.eql("ioana33");
+});
+
+pm.test("The resulting text is this answer", function () {
+    pm.expect(jsonData[0].text).to.eql("this answer");
+});
